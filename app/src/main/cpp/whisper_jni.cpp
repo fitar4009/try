@@ -80,7 +80,7 @@ Java_com_kala_arichta_whisper_WhisperEngine_nativeTranscribe(
     params.print_realtime  = false;
     params.print_timestamps= false;
     params.suppress_blank  = true;
-    params.suppress_non_speech_tokens = true;
+    // params.suppress_non_speech_tokens = true;  // הוסר בגרסה החדשה
     params.temperature     = 0.0f;
     params.n_threads       = 4;
 
