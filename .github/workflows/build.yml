@@ -36,7 +36,11 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
+      - name: Download fresh Gradle wrapper jar
+        run: |
+          curl -L -o gradle/wrapper/gradle-wrapper.jar \
+            "https://github.com/gradle/gradle/raw/v8.6.0/gradle/wrapper/gradle-wrapper.jar"
+          echo "✓ Gradle wrapper jar downloaded"
       # Verify whisper.cpp sources are present (must be manually added or submoduled)
       - name: Clone whisper.cpp
         run: |
