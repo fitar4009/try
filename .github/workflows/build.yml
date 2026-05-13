@@ -38,15 +38,11 @@ jobs:
         run: chmod +x gradlew
 
       # Verify whisper.cpp sources are present (must be manually added or submoduled)
-      - name: Check whisper.cpp sources
+      - name: Clone whisper.cpp
         run: |
-          if [ ! -f "app/src/main/cpp/whisper/whisper.cpp" ]; then
-            echo "ERROR: whisper.cpp sources not found!"
-            echo "Please run: git submodule add https://github.com/ggerganov/whisper.cpp app/src/main/cpp/whisper"
-            echo "Then commit and push."
-            exit 1
-          fi
-          echo "✓ whisper.cpp sources found"
+          rm -rf app/src/main/cpp/whisper
+          git clone --depth=1 https://github.com/ggerganov/whisper.cpp app/src/main/cpp/whisper
+          echo "✓ whisper.cpp cloned"
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
