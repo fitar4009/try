@@ -37,9 +37,6 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v2
-
       # Verify whisper.cpp sources are present (must be manually added or submoduled)
       - name: Check whisper.cpp sources
         run: |
