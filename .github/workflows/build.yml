@@ -47,7 +47,7 @@ jobs:
           echo "android.useAndroidX=true" > gradle.properties
           echo "android.enableJetifier=true" >> gradle.properties
           echo "✓ gradle.properties overwritten with AndroidX settings"
-          
+
       # Verify whisper.cpp sources are present (must be manually added or submoduled)
       - name: Clone whisper.cpp
         run: |
@@ -55,6 +55,12 @@ jobs:
           git clone --depth=1 https://github.com/ggerganov/whisper.cpp app/src/main/cpp/whisper
           echo "✓ whisper.cpp cloned"
 
+      - name: Debug whisper structure
+        run: |
+          find app/src/main/cpp/whisper -name "*.c" -o -name "*.cpp" | head -30
+          echo "---"
+          cat app/src/main/cpp/whisper/CMakeLists.txt | head -30
+      
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
         env:
